@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import { graphql } from "react-apollo";
-import gql from "graphql-tag";
+import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 class App extends Component {
   render() {
-    const { data: { loading, people } } = this.props;
+    const {
+      data: { loading, people }
+    } = this.props
     return (
       <main>
         <header>
@@ -15,7 +17,7 @@ class App extends Component {
             reload with the changes.
           </p>
           <p>
-            The code which renders this component lives in{" "}
+            The code which renders this component lives in{' '}
             <code>./src/App.js</code>.
           </p>
           <p>
@@ -28,11 +30,12 @@ class App extends Component {
           <p>Loading…</p>
         ) : (
           <ul>
-            {people.map(person => <li key={person.id}>{person.name}</li>)}
+            {people &&
+              people.map(person => <li key={person.id}>{person.name}</li>)}
           </ul>
         )}
       </main>
-    );
+    )
   }
 }
 
@@ -43,6 +46,7 @@ export default graphql(
         id
         name
       }
+      foo @client
     }
   `
-)(App);
+)(App)
